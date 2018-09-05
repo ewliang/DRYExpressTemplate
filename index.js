@@ -20,7 +20,15 @@ db.once('open', function() {
 //Routes Files
 const index = require('./routes/index');
 
+//Cors Setup & Config
 app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, HEAD');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.disable('x-powered-by');
 app.use(logger('dev'));
 app.use(bodyParser.json());
